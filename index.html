@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Vue Practice</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!-- Vue -->
+    <script src="https://npmcdn.com/vue/dist/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+
+  </head>
+
+  <body>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary" id="menu">
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+
+          <!-- Menu manager -->
+
+          <!-- Home -->
+          <!-- Active -->
+          <li v-if="activeHome == true" class="nav-item mx-3 text-center active" v-on:click="menu('home')">
+            <a class="nav-link" href="" onclick="return false;"><b>HOME</b></a>
+          </li>
+          <!-- !Active -->
+          <li v-if="activeHome == false" class="nav-item mx-3 text-center" v-on:click="menu('home')">
+            <a class="nav-link" href="" onclick="return false;"><b>HOME</b></a>
+          </li>
+
+          <!-- Products -->
+          <!-- Active -->
+          <li v-if="activeProducts == true" class="nav-item mx-3 text-center active" v-on:click="menu('products')">
+            <a class="nav-link" href="" onclick="return false;"><b>PRODUCTS</b></a>
+          </li>
+          <!-- !Active -->
+          <li v-if="activeProducts == false" class="nav-item mx-3 text-center" v-on:click="menu('products')">
+            <a class="nav-link" href="" onclick="return false;"><b>PRODUCTS</b></a>
+          </li>
+
+          <!-- Services -->
+          <!-- Active -->
+          <li v-if="activeServices == true" class="nav-item mx-3 text-center active" v-on:click="menu('services')">
+            <a class="nav-link" href="" onclick="return false;"><b>SERVICES</b></a>
+          </li>
+          <!-- !Active -->
+          <li v-if="activeServices == false" class="nav-item mx-3 text-center" v-on:click="menu('services')">
+            <a class="nav-link" href="" onclick="return false;"><b>SERVICES</b></a>
+          </li>
+
+          <!-- End menu manager -->
+        </ul>
+      </div>
+
+    </nav>
+
+
+    <br><br><br><br>
+
+    <div id="menu">
+
+    <div class="container" id="app" v-cloak style="text-align: center;">
+
+      <div v-if="activeServices" :key="activeServices"> hi </div>
+      <h1>Services</h1>
+  
+      <ul style="list-style: none;">
+          <!-- Loop to get each service and put as li -->
+          <li class="my-3" v-for="service in services" v-on:click="toggleActive(service)" v-bind:class="{ 'active': service.active}">
+              <!-- If value is active show button 1 and if its not active show button 2 -->
+              <!-- Button 1 -->
+              <button v-if="service.active == true" class="btn btn-lg btn-success btn-block col-lg-4 col-md-4 col-sm-4 mx-auto">
+                <span class="col-lg-8 col-md-8 col-sm-8 float-left">{{service.name}}</span> 
+                <span class="col-lg-4 col-md-4 col-sm-4 float-right">{{service.price | currency}}</span>
+              </button>
+
+              <!-- Button 2 -->
+              <button v-if="service.active == false" class="btn btn-lg btn-danger btn-block col-lg-4 col-md-4 col-sm-4 mx-auto">
+                <span class="col-lg-8 col-md-8 col-sm-8 float-left">{{service.name}}</span> 
+                <span class="col-lg-4 col-md-4 col-sm-4 float-right">{{service.price | currency}}</span>
+              </button>
+          </li>
+      </ul>
+  
+      <div class="total">
+          <!-- Calculate the total price of all chosen services. Format it as currency. -->
+          <h3>Total: <span>{{total() | currency}}</span></h3>
+      </div>
+  
+    </div>
+
+  </div>
+</div>
+      
+    <script src="app.js"></script>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
